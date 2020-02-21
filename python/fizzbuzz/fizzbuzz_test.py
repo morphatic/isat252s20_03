@@ -17,16 +17,23 @@ def describe_a_fizzbuzz_program_that():
   def describes_a_fizz_function_that():
     """Tests for the fizz() function"""
 
-    def throws_an_error_if_input_is_not_a_postive_integer_or_text():
-      with raises(TypeError) as err_info:
+    def throws_an_error_if_no_input():
+      with raises(Exception) as err_info:
         fizz() # pylint: disable=no-value-for-parameter
+      assert err_info.type == TypeError
+      assert 'missing 1 required positional argument' in str(err_info.value)
 
-    def can_determine_if_a_number_is_a_multiple_of_3():
-      """Checks to see if a given number is a multiple of 3."""
-      assert fizz(3) == True       # multiple of 3
-      assert fizz(2) == False      # non-multiple of 3
-      assert fizz(3.5) == False    # non-integer
-      assert fizz(0) == True       # zero
-      assert fizz(-3) == True      # negative multiple of 3
-      assert fizz(-4) == False     # negative non-multiple of 3
-      assert fizz('buzz') == False # non-numeric input
+    def returns_fizz_if_a_number_is_a_multiple_of_3():
+      """
+        Takes an input `x` and checks to see if it is a
+        number, and if so, also a multiple of 3.
+        If it is both, return 'fizz'.
+        Otherwise, return the input.
+      """
+      assert fizz(3) == 'fizz'      # multiple of 3
+      assert fizz(2) == 2           # non-multiple of 3
+      assert fizz(3.5) == 3.5       # non-integer
+      assert fizz(0) == 'fizz'      # zero
+      assert fizz(-3) == 'fizz'     # negative multiple of 3
+      assert fizz(-4) == -4         # negative non-multiple of 3
+      assert fizz('buzz') == 'buzz' # non-numeric input
