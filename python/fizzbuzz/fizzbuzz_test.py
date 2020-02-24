@@ -2,7 +2,7 @@
 """Unit tests for FizzBuzz."""
 
 # import the code to be tested
-from fizzbuzz import fizz
+from fizzbuzz import fizz, buzz, fibu
 
 #import the method needed to test for exceptions
 from pytest import raises
@@ -37,3 +37,51 @@ def describe_a_fizzbuzz_program_that():
       assert fizz(-3) == 'fizz'     # negative multiple of 3
       assert fizz(-4) == -4         # negative non-multiple of 3
       assert fizz('buzz') == 'buzz' # non-numeric input
+
+  def describes_a_buzz_function_that():
+    """Tests for the buzz() function"""
+
+    def throws_an_error_if_no_input():
+      with raises(Exception) as err_info:
+        buzz() # pylint: disable=no-value-for-parameter
+      assert err_info.type == TypeError
+      assert 'missing 1 required positional argument' in str(err_info.value)
+
+    def returns_buzz_if_a_number_is_a_multiple_of_5():
+      """
+        Takes an input `x` and checks to see if it is a
+        number, and if so, also a multiple of 5.
+        If it is both, return 'buzz'.
+        Otherwise, return the input.
+      """
+      assert buzz(5) == 'buzz'      # multiple of 5
+      assert buzz(2) == 2           # non-multiple of 5
+      assert buzz(5.5) == 5.5       # non-integer
+      assert buzz(0) == 'buzz'      # zero
+      assert buzz(-5) == 'buzz'     # negative multiple of 5
+      assert buzz(-4) == -4         # negative non-multiple of 5
+      assert buzz('fizz') == 'fizz' # non-numeric input
+
+  def describes_a_fibu_function_that():
+    """Tests for the fibu() function"""
+
+    def throws_an_error_if_no_input():
+      with raises(Exception) as err_info:
+        fibu() # pylint: disable=no-value-for-parameter
+      assert err_info.type == TypeError
+      assert 'missing 1 required positional argument' in str(err_info.value)
+
+    def returns_fizzbuzz_if_a_number_is_a_multiple_of_15():
+      """
+        Takes an input `x` and checks to see if it is a
+        number, and if so, also a multiple of 15.
+        If it is both, return 'fizzbuzz'.
+        Otherwise, return the input.
+      """
+      assert fibu(15) == 'fizzbuzz'  # multiple of 15
+      assert fibu(2) == 2            # non-multiple of 15
+      assert fibu(5.5) == 5.5        # non-integer
+      assert fibu(0) == 'fizzbuzz'   # zero
+      assert fibu(-15) == 'fizzbuzz' # negative multiple of 15
+      assert fibu(-4) == -4          # negative non-multiple of 15
+      assert fibu('fizz') == 'fizz'  # non-numeric input
