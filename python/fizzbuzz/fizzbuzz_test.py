@@ -2,7 +2,7 @@
 """Unit tests for FizzBuzz."""
 
 # import the code to be tested
-from fizzbuzz import fizz, buzz, fibu
+from fizzbuzz import fizz, buzz, fibu, play
 
 #import the method needed to test for exceptions
 from pytest import raises
@@ -27,16 +27,16 @@ def describe_a_fizzbuzz_program_that():
       """
         Takes an input `x` and checks to see if it is a
         number, and if so, also a multiple of 3.
-        If it is both, return 'fizz'.
+        If it is both, return 'Fizz'.
         Otherwise, return the input.
       """
-      assert fizz(3) == 'fizz'      # multiple of 3
+      assert fizz(3) == 'Fizz'      # multiple of 3
       assert fizz(2) == 2           # non-multiple of 3
       assert fizz(3.5) == 3.5       # non-integer
-      assert fizz(0) == 'fizz'      # zero
-      assert fizz(-3) == 'fizz'     # negative multiple of 3
+      assert fizz(0) == 'Fizz'      # zero
+      assert fizz(-3) == 'Fizz'     # negative multiple of 3
       assert fizz(-4) == -4         # negative non-multiple of 3
-      assert fizz('buzz') == 'buzz' # non-numeric input
+      assert fizz('Buzz') == 'Buzz' # non-numeric input
 
   def describes_a_buzz_function_that():
     """Tests for the buzz() function"""
@@ -51,16 +51,16 @@ def describe_a_fizzbuzz_program_that():
       """
         Takes an input `x` and checks to see if it is a
         number, and if so, also a multiple of 5.
-        If it is both, return 'buzz'.
+        If it is both, return 'Buzz'.
         Otherwise, return the input.
       """
-      assert buzz(5) == 'buzz'      # multiple of 5
+      assert buzz(5) == 'Buzz'      # multiple of 5
       assert buzz(2) == 2           # non-multiple of 5
       assert buzz(5.5) == 5.5       # non-integer
-      assert buzz(0) == 'buzz'      # zero
-      assert buzz(-5) == 'buzz'     # negative multiple of 5
+      assert buzz(0) == 'Buzz'      # zero
+      assert buzz(-5) == 'Buzz'     # negative multiple of 5
       assert buzz(-4) == -4         # negative non-multiple of 5
-      assert buzz('fizz') == 'fizz' # non-numeric input
+      assert buzz('Fizz') == 'Fizz' # non-numeric input
 
   def describes_a_fibu_function_that():
     """Tests for the fibu() function"""
@@ -75,13 +75,22 @@ def describe_a_fizzbuzz_program_that():
       """
         Takes an input `x` and checks to see if it is a
         number, and if so, also a multiple of 15.
-        If it is both, return 'fizzbuzz'.
+        If it is both, return 'FizzBuzz'.
         Otherwise, return the input.
       """
-      assert fibu(15) == 'fizzbuzz'  # multiple of 15
+      assert fibu(15) == 'FizzBuzz'  # multiple of 15
       assert fibu(2) == 2            # non-multiple of 15
       assert fibu(5.5) == 5.5        # non-integer
-      assert fibu(0) == 'fizzbuzz'   # zero
-      assert fibu(-15) == 'fizzbuzz' # negative multiple of 15
+      assert fibu(0) == 'FizzBuzz'   # zero
+      assert fibu(-15) == 'FizzBuzz' # negative multiple of 15
       assert fibu(-4) == -4          # negative non-multiple of 15
-      assert fibu('fizz') == 'fizz'  # non-numeric input
+      assert fibu('Fizz') == 'Fizz'  # non-numeric input
+
+  def plays_FizzBuzz():
+    assert play(1,15) == [
+      1, 2, 'Fizz', 4, 'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz'
+    ]
+    assert play(5,25) == [
+      'Buzz', 'Fizz', 7, 8, 'Fizz', 'Buzz', 11, 'Fizz', 13, 14, 'FizzBuzz', 16, 17, 'Fizz', 19,
+      'Buzz', 'Fizz', 22, 23, 'Fizz', 'Buzz'
+    ]
